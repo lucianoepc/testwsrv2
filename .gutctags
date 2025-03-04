@@ -1,0 +1,10 @@
+--exclude=commom/bin
+--exclude=commom/obj
+--exclude=businesslogic/bin
+--exclude=businesslogic/obj
+--exclude=data/bin
+--exclude=data/obj
+--exclude=webservices/bin
+--exclude=webservices/obj
+--exclude=webservices/log
+--exclude=out

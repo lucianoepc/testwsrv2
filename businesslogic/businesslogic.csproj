@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>PoC.TestWSrv2.BusinessLogic</RootNamespace>
+    <AssemblyName>PoC.TestWSrv2.BusinessLogic</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <ProjectReference Include="../common/common.csproj" />
+  </ItemGroup>
+
+</Project>

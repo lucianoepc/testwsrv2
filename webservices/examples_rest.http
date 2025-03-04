@@ -1,0 +1,38 @@
+@webservices_HostAddress = http://localhost:5174
+
+GET {{webservices_HostAddress}}/weatherforecast/
+Accept: application/json
+
+### Obtener todas las personas
+GET {{webservices_HostAddress}}/api/person
+Accept: application/json
+
+### Obtener una persona por ID
+GET {{webservices_HostAddress}}/api/person/1
+Accept: application/json
+
+### Crear una nueva persona
+POST {{webservices_HostAddress}}/api/person
+Content-Type: application/json
+
+{
+    "firstName": "Juan",
+    "lastName": "Pérez",
+    "dateOfBirth": "1990-05-15",
+    "placeOfBirth": "Lima"
+}
+
+### Actualizar una persona existente
+PUT {{webservices_HostAddress}}/api/person/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "firstName": "Juan Carlos",
+    "lastName": "Pérez",
+    "dateOfBirth": "1990-05-15",
+    "placeOfBirth": "Lima"
+}
+
+### Eliminar una persona
+DELETE {{webservices_HostAddress}}/api/person/1
