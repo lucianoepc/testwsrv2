@@ -1,7 +1,9 @@
-@webservices_HostAddress = http://localhost:5174
+@webservices_HostAddress = http://172.0.0.1:5174
 
 GET {{webservices_HostAddress}}/weatherforecast/
 Accept: application/json
+
+### Gestión de Personas
 
 ### Obtener todas las personas
 GET {{webservices_HostAddress}}/api/person
@@ -16,10 +18,12 @@ POST {{webservices_HostAddress}}/api/person
 Content-Type: application/json
 
 {
+    "code": "P00001",
     "firstName": "Juan",
     "lastName": "Pérez",
     "dateOfBirth": "1990-05-15",
-    "placeOfBirth": "Lima"
+    "placeOfBirth": "Lima",
+    "identitydocumenttypeId": 1
 }
 
 ### Actualizar una persona existente
@@ -27,7 +31,7 @@ PUT {{webservices_HostAddress}}/api/person/1
 Content-Type: application/json
 
 {
-    "id": 1,
+    "id": 1,    
     "firstName": "Juan Carlos",
     "lastName": "Pérez",
     "dateOfBirth": "1990-05-15",
@@ -36,3 +40,92 @@ Content-Type: application/json
 
 ### Eliminar una persona
 DELETE {{webservices_HostAddress}}/api/person/1
+
+### Gestión de Tipos de Documento de Identidad
+
+### Obtener todos los tipos de documento
+GET {{webservices_HostAddress}}/api/identitydocumenttype
+Accept: application/json
+
+### Obtener un tipo de documento por ID
+GET {{webservices_HostAddress}}/api/identitydocumenttype/1
+Accept: application/json
+
+### Crear un nuevo tipo de documento
+POST {{webservices_HostAddress}}/api/identitydocumenttype
+Content-Type: application/json
+
+{
+    "code": "DNI",
+    "description": "DNI - Documento Nacional de Identidad"
+}
+
+### Actualizar un tipo de documento existente
+PUT {{webservices_HostAddress}}/api/identitydocumenttype/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "code": "DNI",
+    "description": "DNI - Documento Nacional de Identidad (Actualizado)"
+}
+
+### Eliminar un tipo de documento
+DELETE {{webservices_HostAddress}}/api/identitydocumenttype/1
+
+### Gestión de Productos
+
+### Obtener todos los productos
+GET {{webservices_HostAddress}}/api/product
+Accept: application/json
+
+### Obtener un producto por ID
+GET {{webservices_HostAddress}}/api/product/1
+Accept: application/json
+
+### Crear un nuevo producto
+POST {{webservices_HostAddress}}/api/product
+Content-Type: application/json
+
+{
+    "code": "PROD001",
+    "name": "Producto 1",
+    "description": "Descripción del producto 1",
+    "baseCost": 100.50
+}
+
+### Actualizar un producto existente
+PUT {{webservices_HostAddress}}/api/product/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "code": "PROD001",
+    "name": "Producto 1 - Actualizado",
+    "description": "Nueva descripción del producto 1",
+    "baseCost": 120.75
+}
+
+### Eliminar un producto
+DELETE {{webservices_HostAddress}}/api/product/1
+
+### Gestión de Productos Vendidos
+
+### Obtener todos los productos vendidos
+GET {{webservices_HostAddress}}/api/soldproducts
+Accept: application/json
+
+### Obtener productos vendidos de una persona
+GET {{webservices_HostAddress}}/api/soldproducts/person/1
+Accept: application/json
+
+### Registrar una venta de producto
+POST {{webservices_HostAddress}}/api/soldproducts
+Content-Type: application/json
+
+{
+    "personId": 1,
+    "productId": 1,
+    "quantity": 2,
+    "saleDate": "2024-01-20T10:30:00Z"
+}

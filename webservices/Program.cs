@@ -10,13 +10,24 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configure SQLite
+// Configure PostgreSQL
+var connectionString = Environment.GetEnvironmentVariable("DB_URL") ?? 
+    "Host=127.0.0.1;Port=5432;Database=dbfenix;Username=usr_owner_fnx;Password=mysecret";
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=people.db"));
+    options.UseNpgsql(connectionString));
+
+// Register repositories
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IIdentityDocumentTypeRepository, IdentityDocumentTypeRepository>();
+builder.Services.AddScoped<ISoldProductsRepository, SoldProductsRepository>();
 
 // Register services
-builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IPersonService, PersonService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IIdentityDocumentTypeService, IdentityDocumentTypeService>();
+builder.Services.AddScoped<ISoldProductsService, SoldProductsService>();
 
 var app = builder.Build();
 
@@ -27,7 +38,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 

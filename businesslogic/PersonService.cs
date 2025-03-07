@@ -24,6 +24,9 @@ public class PersonService : IPersonService
 
     public async Task<Person> CreatePersonAsync(Person person)
     {
+        // Convertir fechas a UTC
+        person.DateOfBirth = DateTime.SpecifyKind(person.DateOfBirth, DateTimeKind.Utc);
+
         if (string.IsNullOrWhiteSpace(person.FirstName))
             throw new ArgumentException("First name is required", nameof(person));
 
