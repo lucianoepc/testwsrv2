@@ -1,0 +1,28 @@
+# Esto se evalua por cada directorio de analisis (si usa 'ctags -R' se evalua en el directorio actual y en los subdirectorios).
+
+# Excluyendo archivos
+--exclude=*.md
+--exclude=*.swp
+--exclude=*.swo
+--exclude=*.yaml
+--exclude=*.json
+--exclude=*.css
+--exclude=*.sql
+--exclude=*.csproj
+--exclude=*.sln
+
+# Excluyendo todos los archivos y carpetas ocultas
+--exclude='.*'
+
+# Excluyendo carpetas
+#--exclude=.git
+--exclude=common/bin
+--exclude=common/obj
+--exclude=businesslogic/bin
+--exclude=businesslogic/obj
+--exclude=data/bin
+--exclude=data/obj
+--exclude=webservices/bin
+--exclude=webservices/obj
+--exclude=webservices/log
+--exclude=out

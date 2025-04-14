@@ -41,6 +41,17 @@ dotnet new gitignore
 
 - En cada proyecto `.csproj` adicionar sus proyectos dependientes entre si. Por ejemplo:
 
+```bash
+dotnet add ./data/data.csproj reference ./common/common.csproj
+
+dotnet add ./businesslogic/businesslogic.csproj reference ./common/common.csproj
+
+dotnet add ./webservices/webservices.csproj reference ./common/common.csproj
+dotnet add ./webservices/webservices.csproj reference ./data/data.csproj
+dotnet add ./webservices/webservices.csproj reference ./businesslogic/businesslogic.csproj
+```
+
+
 ```xml
 <ItemGroup>
     <ProjectReference Include="../uc.core.common/uc.core.common.csproj" />
@@ -65,15 +76,34 @@ dotnet new gitignore
 
 # Configuraciones basica
 
-- Archivo `.gutctags`
+- Archivo de opciones para *Universal CTags* `.ctags`
 
 ```bash
-vim .gutctags
+mkdir ./.ctags.d/
+vim ./.ctags.d/exclude.ctags
 ```
 
 ```
---exclude=commom/bin
---exclude=commom/obj
+# Esto se evalua por cada directorio de analisis (si usa 'ctags -R' se evalua en el directorio actual y en los subdirectorios).
+
+# Excluyendo archivos
+--exclude=*.md
+--exclude=*.swp
+--exclude=*.swo
+--exclude=*.yaml
+--exclude=*.json
+--exclude=*.css
+--exclude=*.sql
+--exclude=*.csproj
+--exclude=*.sln
+
+# Excluyendo todos los archivos y carpetas ocultas
+--exclude='.*'
+
+# Excluyendo carpetas
+#--exclude=.git
+--exclude=common/bin
+--exclude=common/obj
 --exclude=businesslogic/bin
 --exclude=businesslogic/obj
 --exclude=data/bin
